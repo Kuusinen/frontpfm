@@ -1,0 +1,56 @@
+<div class="main_background offset">
+    <div class="container">
+        <ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
+            <ng-template ngbSlide *ngFor="let img of images; index as i">
+                <div class="carousel-caption">
+                    <h3>My slide {{i + 1}} title</h3>
+                </div>
+                <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
+                    <div class="picsum-img-wrapper" style="background-color: rgba(0,0,0,0);">
+                        <img [src]="img" alt="My image {{i + 1}} description" class="w-100 h-100" />
+                    </div>
+                </a>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <div class="container-fluid">
+        <h1 class="pres-title">Présentation de la créatrice</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in felis nec sapien semper commodo. Duis
+            ornare pharetra tincidunt. Proin sit amet nunc ut tellus dictum tincidunt. Aliquam ut tristique ante, sed
+            rhoncus sem. Vestibulum pharetra euismod dui, at faucibus turpis accumsan a. Maecenas placerat vestibulum
+            libero sed egestas. Aenean tempus purus non tempus faucibus. Phasellus elementum magna et tincidunt
+            ultrices. In et aliquet nisl. Pellentesque faucibus odio vel arcu aliquet, non ornare tellus pellentesque.
+            Aliquam ornare rhoncus dolor.
+
+            Quisque ut laoreet erat. Duis vel nisi magna. Pellentesque habitant morbi tristique senectus et netus et
+            malesuada fames ac turpis egestas. Aenean sit amet pretium magna, at vulputate sapien. Quisque euismod urna
+            est, nec faucibus dui ullamcorper a. Donec at scelerisque sem. Vivamus semper, tortor sit amet sagittis
+            pellentesque, odio neque sagittis mi, quis euismod erat nisi id ipsum. Maecenas lobortis metus eros, ac
+            vulputate leo varius ac. Etiam in semper ex. Praesent non augue id tellus rutrum venenatis vitae in nibh.
+            Donec lacus felis, pellentesque eu scelerisque ut, vulputate vel est. Donec vestibulum lorem ipsum,
+            tristique rhoncus velit gravida fermentum. Nulla facilisis ultricies tortor, eu posuere ipsum molestie
+            vitae. Aenean condimentum erat condimentum, lacinia risus nec, pulvinar turpis.
+
+            Nulla mollis lectus erat, at egestas mauris consectetur eget. Curabitur non hendrerit ante. Duis cursus
+            justo et felis aliquet lacinia. Praesent porttitor semper nulla at laoreet. Curabitur eleifend, arcu sit
+            amet ornare efficitur, nisl metus feugiat risus, in volutpat nulla purus in orci. Morbi ut posuere nisl.
+            Phasellus maximus, lacus et aliquam convallis, massa ligula aliquam enim, sit amet sodales diam erat eget
+            tellus. Vestibulum ut lobortis augue. Curabitur mollis, libero id imperdiet lobortis, tellus ligula
+            malesuada mauris, id bibendum quam justo quis dolor. Nunc sit amet dolor erat. Etiam in luctus nisl. Proin
+            faucibus et lacus nec facilisis. Nam condimentum, dolor in vestibulum volutpat, dolor tortor ultrices
+            libero, non blandit nisl ligula eu quam.
+
+            Aliquam erat volutpat. Integer posuere nunc vel nibh sodales suscipit. Ut pharetra vitae nisl sed dictum.
+            Praesent non tellus eu nibh dictum sollicitudin. Nulla quis sem vitae ante fringilla imperdiet. Integer in
+            dignissim elit. Suspendisse tincidunt dui odio. Morbi faucibus est eu rutrum maximus. Cras a facilisis
+            lectus. Donec a mattis neque. Donec vulputate varius rutrum. In a odio nulla.
+
+            Vivamus malesuada rutrum bibendum. Sed purus urna, ornare ac dui non, laoreet auctor urna. Phasellus velit
+            ligula, imperdiet cursus pretium imperdiet, fringilla vitae orci. Mauris augue ex, sodales nec condimentum
+            ac, mattis quis mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+            himenaeos. Nulla vel mi felis. Donec et mollis nunc, sed elementum justo. Etiam nec est tincidunt, finibus
+            justo et, aliquet tellus. Maecenas sit amet tincidunt leo. Ut pretium nulla eget sapien posuere, sit amet
+            consequat urna tempor. Phasellus varius dolor non aliquam efficitur. </p>
+    </div>
+</div>

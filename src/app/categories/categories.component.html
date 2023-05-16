@@ -1,0 +1,13 @@
+<div class="main_background offset">
+    <div class="container-fluid cat-container">
+        <h1 class="cat-title">Catégories</h1>
+        <div class="row cat-div">
+            <mat-card *ngFor="let cat of allCat" class="col-auto cat-card">
+                <mat-card-header>
+                    <mat-card-title class="cat-card-title">{{cat.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>image</mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

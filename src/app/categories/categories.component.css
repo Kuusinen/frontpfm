@@ -1,0 +1,37 @@
+.offset {
+    margin-top: 30px;
+    padding-top: 118px;
+}
+
+.main_background {
+    background-color: rgb(156, 153, 144);
+}
+
+.cat-container{
+    margin-top: 20px;
+}
+
+.cat-title{
+    color: rgb(194, 208, 185);
+}
+
+.cat-card{
+    height: 250px;
+    width: 150px;
+    margin: 20px;
+}
+
+.cat-card:hover{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
+}
+
+.cat-div{
+    justify-content: center;
+}
+
+.cat-card-title{
+    color: rgb(194, 208, 185);
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0px 2px rgba(0, 0, 0, 0.4);
+}

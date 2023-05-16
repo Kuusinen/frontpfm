@@ -1,0 +1,8 @@
+.footer-background-color {
+    background-color: rgb(255, 255, 255);
+    color: rgb(194, 208, 185);
+}
+
+footer {
+    box-shadow: 0px -5px 8px rgba(0, 0, 0, 0.3);
+}
