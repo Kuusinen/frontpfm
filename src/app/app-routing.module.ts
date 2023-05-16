@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-  {path:'categories', component: CategoriesComponent},
-  {path:'homepage', component: HomepageComponent},
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'homepage', component: HomepageComponent },
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
