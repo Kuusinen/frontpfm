@@ -12,6 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCardModule } from '@angular/material/card';
 import { CategoriesComponent } from './categories/categories.component';
+import { AdminComponent } from './admin/admin.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { CategoriesComponent } from './categories/categories.component';
     HeaderComponent,
     FooterComponent,
     HomepageComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AdminComponent
   ],
   imports: [
     NgbCollapseModule,
@@ -29,6 +33,8 @@ import { CategoriesComponent } from './categories/categories.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatCardModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

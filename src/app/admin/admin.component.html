@@ -1,0 +1,15 @@
+<div class="offset div-log">
+  <h3>Connexion</h3>
+  <p>Veuillez entrer vos identifiants.</p>
+  <p class="p-id">
+    <label>identifiant :</label>
+    <input #id class="input" placeholder="identifiant" type="text" [(ngModel)]="user.name" />
+  </p>
+  <p class="p-id">
+    <label>mot de passe :</label>
+    <input #password class="input" type="password" placeholder="mot de passe" [(ngModel)]="user.password" />
+  </p>
+  <br>
+  <br>
+  <button (click)="loggedin()" class="btn-log"><span>connexion</span></button>
+</div>

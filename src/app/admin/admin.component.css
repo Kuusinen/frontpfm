@@ -1,0 +1,44 @@
+.offset {
+    margin-top: 30px;
+    padding-top: 118px;
+    margin-bottom: 30px;
+}
+
+.div-log {
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.p-id {
+    width: 250px;
+    display: inline-block;
+}
+
+.btn-log {
+    color: rgb(194, 208, 185);
+    background-color: rgb(255, 255, 255);
+    border: none;
+    font-weight: bold;
+    font-size: 19px;
+    width: 150px;
+    height: 30px;
+}
+
+.btn-log:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
+    transition: 0.7s;
+}
+
+input {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
+    border: none;
+}
+
+input:focus{
+    outline: none;
+    border: none;
+}
+
+input:hover{
+    border: none;
+}
