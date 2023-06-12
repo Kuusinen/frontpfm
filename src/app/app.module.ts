@@ -14,7 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CategoriesComponent } from './categories/categories.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './service/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
