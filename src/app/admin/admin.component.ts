@@ -37,5 +37,10 @@ export class AdminComponent {
 
   loggedOut(): void {
     this.authService.logout();
+    this.router.navigate(['/homepage']);
+  }
+
+  isLogged() {
+    return !this.authService.isTokenExpired();
   }
 }

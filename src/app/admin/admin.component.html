@@ -1,4 +1,4 @@
-<div class="offset div-log">
+<div class="offset div-log" *ngIf="!isLogged()">
   <h3>Connexion</h3>
   <p>Veuillez entrer vos identifiants.</p>
   <p class="p-id">
@@ -12,4 +12,7 @@
   <br>
   <br>
   <button (click)="loggedin()" class="btn-log"><span>connexion</span></button>
+</div>
+<div class="offset div-log" *ngIf="isLogged()">
+  <button (click)="loggedOut()" class="btn-log"><span>déconnexion</span></button>
 </div>
