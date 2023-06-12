@@ -10,10 +10,6 @@ export class AuthService {
 
   private apiUrl: string = "https://localhost:444/pfm/login";
 
-  private userLog!: string;
-
-  private roles!: string;
-
   private helper = new JwtHelperService();
 
   private token!: string;
@@ -30,16 +26,14 @@ export class AuthService {
     this.decodeJWT(jwt);
   }
 
-  decodeJWT(token: string) {
+  private decodeJWT(token: string) {
     const decodedToken = this.helper.decodeToken(token);
-    this.roles = decodedToken.roles;
-    this.userLog = decodedToken.sub;
   }
 
   getToken(): string {
     this.token = localStorage.getItem("jwt") || "";
 
-    if(this.helper.isTokenExpired(this.token)){
+    if (this.helper.isTokenExpired(this.token)) {
       this.token = "";
       localStorage.removeItem("jwt");
     }
@@ -48,12 +42,10 @@ export class AuthService {
   }
 
   logout() {
-    this.userLog = "";
-    this.roles = "";
     localStorage.removeItem("jwt");
   }
 
   isTokenExpired(): boolean {
-    return this.helper.isTokenExpired(this.token);
+    return this.helper.isTokenExpired(this.getToken());
   }
 }
