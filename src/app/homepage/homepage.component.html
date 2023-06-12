@@ -1,17 +1,36 @@
 <div class="main_background offset">
     <div class="container">
         <ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
-            <ng-template ngbSlide *ngFor="let img of images; index as i">
+            <ng-template ngbSlide *ngFor="let img of carouselImages">
                 <div class="carousel-caption">
-                    <h3>My slide {{i + 1}} title</h3>
+                    <h3>{{img.textDescription}}</h3>
                 </div>
-                <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
+                <a href="{{img.textDescription}}" target="_blank" rel="nofollow noopener noreferrer">
                     <div class="picsum-img-wrapper" style="background-color: rgba(0,0,0,0);">
-                        <img [src]="img" alt="My image {{i + 1}} description" class="w-100 h-100" />
+                        <img [src]="img.byteImage" alt="{{img.textDescription}}" class="w-100 h-100" />
                     </div>
                 </a>
             </ng-template>
         </ngb-carousel>
+        <div class="row img-div-admin" *ngIf="isLog">
+            <div *ngFor="let img of carouselImages" class="col-auto img-element-admin">
+                <img height="64" width="64" [src]="img.byteImage" />
+                <input [(ngModel)]="img.textDescription"/>
+                <div>
+                    <button>
+                        <mat-icon fontIcon="delete" (click)="deleteCarouselImg(img)"></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div #backgroundImage class="image-upload d-flex justify-content-center align-items-center">
+                    <label for="file-input">
+                        <mat-icon fontIcon="add_photo_alternate" class="education-img" />
+                    </label>
+                    <input id="file-input" type="file" (change)="importImage($event)" />
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container-fluid pres-container">
         <h1 class="pres-title">Présentation de la créatrice</h1>
