@@ -19,4 +19,8 @@ export class CarouselService {
   getCarouselElement(): Observable<HttpResponse<carouselElement[]>> {
     return this.httpClient.get<carouselElement[]>(this.apiUrl, { observe: 'response' });
   }
+
+  deleteCarouselElement(carouselElement: carouselElement): void {
+    this.httpClient.delete<carouselElement>(this.apiUrl + "/remove", { body: carouselElement });
+  }
 }

@@ -3,19 +3,19 @@
         <ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
             <ng-template ngbSlide *ngFor="let img of carouselImages">
                 <div class="carousel-caption">
-                    <h3>{{img.textDescription}}</h3>
+                    <h3>{{img.imageDescription}}</h3>
                 </div>
-                <a href="{{img.textDescription}}" target="_blank" rel="nofollow noopener noreferrer">
+                <a href="{{img.imageDescription}}" target="_blank" rel="nofollow noopener noreferrer">
                     <div class="picsum-img-wrapper" style="background-color: rgba(0,0,0,0);">
-                        <img [src]="img.byteImage" alt="{{img.textDescription}}" class="w-100 h-100" />
+                        <img [src]="loadImage(img.imageUuid)" class="w-100 h-100" />
                     </div>
                 </a>
             </ng-template>
         </ngb-carousel>
         <div class="row img-div-admin" *ngIf="isLog">
             <div *ngFor="let img of carouselImages" class="col-auto img-element-admin">
-                <img height="64" width="64" [src]="img.byteImage" />
-                <input [(ngModel)]="img.textDescription"/>
+                <img height="64" width="64" [src]="loadImage(img.imageUuid)" />
+                <input [(ngModel)]="img.imageDescription" (focusout)="onLostFocus(img)"/>
                 <div>
                     <button>
                         <mat-icon fontIcon="delete" (click)="deleteCarouselImg(img)"></mat-icon>

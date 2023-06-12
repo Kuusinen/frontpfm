@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../service/auth.service';
 import { carouselElement } from '../model/carouselElement';
+import { CarouselService } from '../service/carousel.service';
+import { PictureService } from '../service/picture.service';
 
 @Component({
   selector: 'app-homepage',
@@ -26,21 +28,38 @@ export class HomepageComponent implements OnInit {
 
   imgCarousel!: carouselElement;
 
-  constructor(private authService: AuthService) {
+  imageById: Map<string, string> = new Map<string, string>();
+
+  constructor(private authService: AuthService, private carouselService: CarouselService, private pictureService: PictureService) {
   }
 
   ngOnInit(): void {
     this.isLog = !this.authService.isTokenExpired();
 
-    let images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
-    let i = 1;
-    for (let img of images) {
-      this.imgCarousel = new carouselElement();
-      this.imgCarousel.byteImage = img;
-      this.imgCarousel.textDescription = "My slide " + i + " title";
-      this.carouselImages.push(this.imgCarousel);
-      i = i + 1;
-    }
+    this.carouselService.getCarouselElement().subscribe({
+      next: carouselElementsResponse => {
+        if (carouselElementsResponse.ok && carouselElementsResponse.body != null) {
+
+          carouselElementsResponse.body.forEach(element => {
+            if (element.imageUuid != undefined) {
+              this.pictureService.getPictureById(element.imageUuid).subscribe(file => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = () => {
+                  const byteImage = reader.result as string;
+                  if (element.imageUuid != undefined) {
+                    this.imageById.set(element.imageUuid, byteImage);
+                    this.carouselImages.push(element);
+                  }
+                }
+              });
+            }
+
+          });
+        }
+      }
+    });
   }
 
   togglePaused() {
@@ -69,13 +88,39 @@ export class HomepageComponent implements OnInit {
     reader.onload = () => {
       const byteImage = reader.result as string;
       this.imgCarousel = new carouselElement();
-      this.imgCarousel.byteImage = byteImage;
-      this.imgCarousel.textDescription = "";
-      this.carouselImages.push(this.imgCarousel);
+      this.imgCarousel.imageDescription = "";
+      this.pictureService.savePicture(this.file).subscribe({
+        next: (response) => {
+          if (response.ok && response.body != null) {
+            this.imgCarousel.imageUuid = response.body.message;
+            this.imageById.set(response.body.message, byteImage);
+            this.carouselImages.push(this.imgCarousel);
+          }
+        }
+      });
     }
   }
 
   deleteCarouselImg(img: carouselElement): void {
     this.carouselImages.splice(this.carouselImages.indexOf(img), 1);
+    this.carouselService.deleteCarouselElement(img);
+  }
+
+  onLostFocus(carouselElement: carouselElement): void {
+    this.carouselService.saveCarouselElement(carouselElement).subscribe({
+      next: response => {
+        if(response.ok){
+          console.log("nouvelle image dans le carrousel");
+        }
+      }
+    });
+  }
+
+  loadImage(id?: string): string {
+    if (id != undefined) {
+      return this.imageById.get(id) as string;
+    } else {
+      return "";
+    }
   }
 }
