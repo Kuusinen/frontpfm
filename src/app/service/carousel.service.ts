@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { carouselElement } from '../model/carouselElement';
+import { CarouselElement } from '../model/carouselElement';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,15 +12,15 @@ export class CarouselService {
 
   constructor(private httpClient: HttpClient) { }
 
-  saveCarouselElement(imgCarousel: carouselElement): Observable<HttpResponse<carouselElement>> {
-    return this.httpClient.post<carouselElement>(this.apiUrl, imgCarousel, { observe: 'response' });
+  saveCarouselElement(imgCarousel: CarouselElement): Observable<HttpResponse<CarouselElement>> {
+    return this.httpClient.post<CarouselElement>(this.apiUrl, imgCarousel, { observe: 'response' });
   }
 
-  getCarouselElement(): Observable<HttpResponse<carouselElement[]>> {
-    return this.httpClient.get<carouselElement[]>(this.apiUrl, { observe: 'response' });
+  getCarouselElement(): Observable<HttpResponse<CarouselElement[]>> {
+    return this.httpClient.get<CarouselElement[]>(this.apiUrl, { observe: 'response' });
   }
 
-  deleteCarouselElement(carouselElement: carouselElement): void {
-    this.httpClient.delete<carouselElement>(this.apiUrl + "/remove", { body: carouselElement });
+  deleteCarouselElement(carouselElement: CarouselElement): Observable<HttpResponse<CarouselElement>> {
+    return this.httpClient.delete<CarouselElement>(this.apiUrl + "/remove", { observe: 'response', body: carouselElement });
   }
 }
