@@ -1,12 +1,51 @@
 <div class="main_background offset">
     <div class="container-fluid cat-container">
-        <h1 class="cat-title">Catégories</h1>
-        <div class="row cat-div">
-            <mat-card *ngFor="let cat of allCat" class="col-auto cat-card">
+        <ul class="breadcrumb">
+            <li>
+                <h1 #title class="cat-title" (click)="initCategory(null)">Catégories</h1>
+            </li>
+            <li *ngIf="parentCategory != null" class="sub-page">
+                <h4 class="sub-title">{{parentCategory.name}}</h4>
+            </li>
+        </ul>
+        <div class="row cat-div" *ngIf="!isLog">
+            <mat-card *ngFor="let cat of allCat" class="col-auto cat-card"
+                [ngStyle]="{'background-image': 'url('+loadImage(cat.imageUuid)+')'}" (click)="loadCategory(cat)">
                 <mat-card-header>
                     <mat-card-title class="cat-card-title">{{cat.name}}</mat-card-title>
                 </mat-card-header>
-                <mat-card-content>image</mat-card-content>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="row cat-div" *ngIf="isLog">
+            <mat-card *ngFor="let cat of allCat" class="col-auto cat-card"
+                [ngStyle]="{'background-image': 'url('+loadImage(cat.imageUuid)+')'}">
+                <mat-card-header>
+                    <mat-card-title class="cat-card-title">
+                        <input [(ngModel)]="cat.name" (focusout)="onLostFocus(cat)" />
+                        &nbsp;
+                        <button>
+                            <mat-icon fontIcon="delete" (click)="deleteCategory(cat)"></mat-icon>
+                        </button>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="cat-card-edit-content">
+                    <button>
+                        <mat-icon fontIcon="edit" (click)="loadCategory(cat)"></mat-icon>
+                    </button>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="cat-card">
+                <mat-card-content>
+                    <div #backgroundImage class="image-upload d-flex justify-content-center align-items-center">
+                        <label for="file-input">
+                            <mat-icon fontIcon="add_photo_alternate" class="education-img" />
+                        </label>
+                        <input id="file-input" type="file" (change)="importImage($event)" />
+                    </div>
+                </mat-card-content>
             </mat-card>
         </div>
     </div>

@@ -1,26 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../model/category';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private categories!: Category[];
+  private apiUrl: string = "https://localhost:444/pfm/api";
 
-  constructor() { 
-    this.categories = [];
-    for (let index = 0; index < 30; index++) {
-      const cat: Category = {
-        uuid: "" + index,
-        name: "Catégorie " + index};
+  private categoryUrl: string = "/category";
 
-      this.categories.push(cat);
-    }
+  private removeUrl: string = "/remove";
+
+  constructor(private httpClient: HttpClient) { }
+
+  getAllCategory(): Observable<HttpResponse<Category[]>> {
+    const fullCategoryUrl = this.apiUrl + this.categoryUrl;
+    return this.httpClient.get<Category[]>(fullCategoryUrl, { observe: 'response' });
   }
 
-  public getCategories(): Category[]{
-    return this.categories;
+  getAllSubCategory(category: Category): Observable<HttpResponse<Category[]>> {
+    const fullCategoryUrl = this.apiUrl + this.categoryUrl + "/" + category.uuid;
+    return this.httpClient.get<Category[]>(fullCategoryUrl, { observe: 'response' });
+  }
+
+  addCategory(category: Category): Observable<HttpResponse<Category>> {
+    const fullCategoryUrl = this.apiUrl + this.categoryUrl;
+    return this.httpClient.post<Category>(fullCategoryUrl, category, { observe: 'response' });
+  }
+
+  deleteCategory(category: Category): Observable<HttpResponse<Category>>{
+    const fullCategoryUrl = this.apiUrl + this.categoryUrl + this.removeUrl;
+    return this.httpClient.delete<Category>(fullCategoryUrl, { observe: 'response', body: category});
   }
 }
 

@@ -7,31 +7,66 @@
     background-color: rgb(156, 153, 144);
 }
 
-.cat-container{
+.cat-container {
     margin-top: 20px;
 }
 
-.cat-title{
+.cat-title {
     color: rgb(194, 208, 185);
 }
 
-.cat-card{
-    height: 250px;
-    width: 150px;
+.sub-title {
+    color: rgb(194, 208, 185);
+}
+
+.cat-card {
+    height: 300px;
+    width: 350px;
     margin: 20px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.8s linear;
 }
 
-.cat-card:hover{
+.cat-card:hover {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
+    background-size: 115%;
 }
 
-.cat-div{
+.cat-div {
     justify-content: center;
 }
 
-.cat-card-title{
+.cat-card-title {
     color: rgb(194, 208, 185);
     font-weight: bold;
     font-size: 16px;
     text-shadow: 0px 2px rgba(0, 0, 0, 0.4);
+}
+
+.breadcrumb ul {
+    list-style: none;
+}
+
+.breadcrumb li{
+    display: inline;
+}
+
+.breadcrumb li+li:before {
+    padding: 8px;
+    content: " > ";
+    color: rgb(194, 208, 185);
+}
+
+.breadcrumb li h4{
+    display: inline;
+}
+
+.sub-page{
+    padding-top: 15px;
+}
+
+.cat-card-edit-content {
+    text-align: center;
 }

@@ -1,5 +1,6 @@
 export class Category {
     uuid!: string;
     name!: string;
-    cat?: Category;
+    category?: Category;
+    imageUuid?: string;
 }
