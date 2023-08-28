@@ -4,8 +4,8 @@
             <li>
                 <h1 #title class="cat-title" (click)="initCategory(null)">Catégories</h1>
             </li>
-            <li *ngIf="parentCategory != null" class="sub-page">
-                <h4 class="sub-title">{{parentCategory.name}}</h4>
+            <li *ngFor="let cat of breadCrumbCat" class="sub-page">
+                <h4 class="sub-title" (click)="initCategory(cat)">{{cat.name}}</h4>
             </li>
         </ul>
         <div class="row cat-div" *ngIf="!isLog">

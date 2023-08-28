@@ -63,10 +63,15 @@
     display: inline;
 }
 
+.breadcrumb li:not(:last-child){
+    cursor: pointer;
+}
+
 .sub-page{
     padding-top: 15px;
 }
 
 .cat-card-edit-content {
+    height: 200px;
     text-align: center;
 }

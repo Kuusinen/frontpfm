@@ -18,6 +18,8 @@ export class CategoriesComponent implements OnInit {
 
   allCat: Category[] = [];
 
+  breadCrumbCat: Category[] = [];
+
   private newCategory!: Category;
 
   imageById: Map<string, string> = new Map<string, string>();
@@ -116,6 +118,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   loadCategory(category: Category) {
+    this.breadCrumbCat.push(category);
     this.parentCategory = category;
     this.allCat = [];
 
@@ -142,7 +145,6 @@ export class CategoriesComponent implements OnInit {
       },
     });
 
-    this.renderer.setStyle(this.title.nativeElement, "cursor", "pointer");
     this.renderer.setStyle(this.title.nativeElement, "text-decoration", "underline");
 
     if (this.allCat.length == 0) {
@@ -151,11 +153,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   initCategory(category: Category | null) {
-    if (this.parentCategory != null) {
+    if (category == null) {
       this.parentCategory = category;
       this.allCat = [];
+      this.breadCrumbCat = [];
 
-      this.renderer.setStyle(this.title.nativeElement, "cursor", "auto");
       this.renderer.setStyle(this.title.nativeElement, "text-decoration", "none");
 
       this.categoryService.getAllCategory().subscribe({
@@ -180,6 +182,40 @@ export class CategoriesComponent implements OnInit {
           }
         },
       });
+    } else {
+      this.breadCrumbCat.splice(this.breadCrumbCat.indexOf(category) + 1);
+      this.parentCategory = category;
+      this.allCat = [];
+
+      this.categoryService.getAllSubCategory(category).subscribe({
+        next: categoryResponse => {
+          if (categoryResponse.ok && categoryResponse.body != null) {
+            categoryResponse.body.forEach(category => {
+              if (category.imageUuid != undefined) {
+                this.pictureService.getPictureById(category.imageUuid).subscribe(file => {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(file);
+
+                  reader.onload = () => {
+                    const byteImage = reader.result as string;
+                    if (category.imageUuid != undefined) {
+                      this.imageById.set(category.imageUuid, byteImage);
+                      this.allCat.push(category);
+                    }
+                  }
+                });
+              }
+            });
+          }
+        },
+      });
+
+      this.renderer.setStyle(this.title.nativeElement, "cursor", "pointer");
+      this.renderer.setStyle(this.title.nativeElement, "text-decoration", "underline");
+
+      if (this.allCat.length == 0) {
+        this.productMode = true;
+      }
     }
   }
 }
