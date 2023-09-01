@@ -1,0 +1,43 @@
+<div class="main_background offset">
+    <div *ngIf="isLog">
+        <div *ngIf="productLoaded | async">
+            <h3>{{product.category.name}}</h3>
+            <div class="product-div">
+                <input placeholder="titre de l'article" class="product-title" [(ngModel)]="product.title" />
+                <div class="product-img">
+                    <div class="container">
+                        <div class="row product-all-img">
+                            <img *ngFor="let img of productImage" src="{{img}}" (click)="changeImg(img)"
+                                class="product-thumbnail" />
+                        </div>
+                        <img #firstImage src="{{imageView}}" width="450px" class="size-img"/>
+                    </div>
+                    <div #backgroundImage class="image-upload d-flex justify-content-center align-items-center">
+                        <label for="file-input">
+                            <mat-icon fontIcon="add_photo_alternate" class="education-img" />
+                        </label>
+                        <input id="file-input" type="file" (change)="importImage($event)" />
+                    </div>
+                </div>
+                <textarea type="text" placeholder="entrer la description de l'article" [(ngModel)]="product.body"></textarea>
+                <br />
+                <button (click)="createProduct()">Créer l'article</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isLog">
+        <div *ngIf="productLoaded | async">
+            <h1>{{product.title}}</h1>
+            <div class="product-img">
+                <div class="container">
+                    <div class="row product-all-img">
+                        <img *ngFor="let img of productImage" src="{{img}}" (click)="changeImg(img)"
+                            class="product-thumbnail" />
+                    </div>
+                    <img #firstImage src="{{imageView}}" width="450px" class="size-img"/>
+                </div>
+            </div>
+            <p>{{product.body}}</p>
+        </div>
+    </div>
+</div>

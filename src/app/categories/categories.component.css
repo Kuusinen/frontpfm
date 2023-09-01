@@ -27,6 +27,7 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: background-size 0.8s linear;
+    padding: 0px;
 }
 
 .cat-card:hover {
@@ -41,15 +42,23 @@
 .cat-card-title {
     color: rgb(194, 208, 185);
     font-weight: bold;
-    font-size: 16px;
+    font-size: 26px;
     text-shadow: 0px 2px rgba(0, 0, 0, 0.4);
+}
+
+.cat-card-header {
+    background-color: rgb(156, 153, 144, 0.9);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .breadcrumb ul {
     list-style: none;
 }
 
-.breadcrumb li{
+.breadcrumb li {
     display: inline;
 }
 
@@ -59,19 +68,23 @@
     color: rgb(194, 208, 185);
 }
 
-.breadcrumb li h4{
+.breadcrumb li h4 {
     display: inline;
 }
 
-.breadcrumb li:not(:last-child){
+.breadcrumb li:not(:last-child) {
     cursor: pointer;
 }
 
-.sub-page{
+.sub-page {
     padding-top: 15px;
 }
 
 .cat-card-edit-content {
     height: 200px;
     text-align: center;
+}
+
+.product-mode {
+    float: right;
 }

@@ -8,17 +8,32 @@
                 <h4 class="sub-title" (click)="initCategory(cat)">{{cat.name}}</h4>
             </li>
         </ul>
-        <div class="row cat-div" *ngIf="!isLog">
+        <div *ngIf="isLog && productMode" class="product-mode">
+            <button (click)="openProduct(null)">
+                ajouter un article
+            </button>
+        </div>
+        <div class="row cat-div" *ngIf="!isLog && categoryMode">
             <mat-card *ngFor="let cat of allCat" class="col-auto cat-card"
                 [ngStyle]="{'background-image': 'url('+loadImage(cat.imageUuid)+')'}" (click)="loadCategory(cat)">
-                <mat-card-header>
+                <mat-card-header class="cat-card-header">
                     <mat-card-title class="cat-card-title">{{cat.name}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                 </mat-card-content>
             </mat-card>
         </div>
-        <div class="row cat-div" *ngIf="isLog">
+        <div  class="row" *ngIf="!isLog && productMode">
+            <mat-card *ngFor="let product of allProducts" class="col-auto" (click)="openProduct(product)">
+            <mat-card-header class="cat-card-header">
+                <mat-card-title class="cat-card-title">{{product.title}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+
+            </mat-card-content>
+        </mat-card>
+        </div>
+        <div class="row cat-div" *ngIf="isLog && categoryMode">
             <mat-card *ngFor="let cat of allCat" class="col-auto cat-card"
                 [ngStyle]="{'background-image': 'url('+loadImage(cat.imageUuid)+')'}">
                 <mat-card-header>

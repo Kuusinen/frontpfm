@@ -1,0 +1,48 @@
+.offset {
+    margin-top: 30px;
+    padding-top: 118px;
+    padding-bottom: 18px;
+}
+
+.product-div {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-all-img {
+    width: 128px;
+    float: inline-end;
+}
+
+.product-thumbnail {
+    margin: 0px 4px 4px 4px;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 580px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 430px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .size-img {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .size-img {
+        width: 450px;
+    }
+}
+
+.product-img{
+    margin: 12px;
+}

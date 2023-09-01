@@ -12,7 +12,7 @@ export class PictureService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPictureById(id: string): Observable<Blob> {
+  getPictureById(id: string |undefined): Observable<Blob> {
     return this.httpClient.get(this.apiUrl + id, { responseType: 'blob' });
   }
 

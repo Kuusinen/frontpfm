@@ -16,6 +16,7 @@ import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './service/token.interceptor';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TokenInterceptor } from './service/token.interceptor';
     FooterComponent,
     HomepageComponent,
     CategoriesComponent,
-    AdminComponent
+    AdminComponent,
+    ProductComponent
   ],
   imports: [
     NgbCollapseModule,
