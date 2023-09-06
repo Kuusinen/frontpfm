@@ -23,13 +23,13 @@
                 </mat-card-content>
             </mat-card>
         </div>
-        <div  class="row" *ngIf="!isLog && productMode">
+        <div class="row cat-div" *ngIf="productMode">
             <mat-card *ngFor="let product of allProducts" class="col-auto" (click)="openProduct(product)">
-            <mat-card-header class="cat-card-header">
-                <mat-card-title class="cat-card-title">{{product.title}}</mat-card-title>
+            <mat-card-header class="prod-card-header">
+                <mat-card-title class="prod-card-title">{{product.title}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-
+                <img [src]="loadImage(product.uuidsImages.at(0))" width="128px" height="100%"/>
             </mat-card-content>
         </mat-card>
         </div>

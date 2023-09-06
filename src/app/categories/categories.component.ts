@@ -193,71 +193,73 @@ export class CategoriesComponent implements OnInit {
   }
 
   initCategory(category: Category | null) {
-    if (category == null) {
-      this.parentCategory = category;
-      this.allCat = [];
-      this.allProducts = [];
-      this.breadCrumbCat = [];
+    if (category != this.parentCategory) {
+      if (category == null) {
+        this.parentCategory = category;
+        this.allCat = [];
+        this.allProducts = [];
+        this.breadCrumbCat = [];
 
-      this.renderer.setStyle(this.title.nativeElement, "text-decoration", "none");
+        this.renderer.setStyle(this.title.nativeElement, "text-decoration", "none");
 
-      this.categoryService.getAllCategory().subscribe({
-        next: categoryResponse => {
-          if (categoryResponse.ok && categoryResponse.body != null) {
-            categoryResponse.body.forEach(category => {
-              if (category.imageUuid != undefined) {
-                this.pictureService.getPictureById(category.imageUuid).subscribe(file => {
-                  const reader = new FileReader();
-                  reader.readAsDataURL(file);
+        this.categoryService.getAllCategory().subscribe({
+          next: categoryResponse => {
+            if (categoryResponse.ok && categoryResponse.body != null) {
+              categoryResponse.body.forEach(category => {
+                if (category.imageUuid != undefined) {
+                  this.pictureService.getPictureById(category.imageUuid).subscribe(file => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
 
-                  reader.onload = () => {
-                    const byteImage = reader.result as string;
-                    if (category.imageUuid != undefined) {
-                      this.imageById.set(category.imageUuid, byteImage);
-                      this.allCat.push(category);
-                      this.updateMode();
+                    reader.onload = () => {
+                      const byteImage = reader.result as string;
+                      if (category.imageUuid != undefined) {
+                        this.imageById.set(category.imageUuid, byteImage);
+                        this.allCat.push(category);
+                        this.updateMode();
+                      }
                     }
-                  }
-                });
-              }
-            });
-            this.updateMode();
-          }
-        },
-      });
-    } else {
-      this.breadCrumbCat.splice(this.breadCrumbCat.indexOf(category) + 1);
-      this.parentCategory = category;
-      this.allCat = [];
-      this.allProducts = [];
+                  });
+                }
+              });
+              this.updateMode();
+            }
+          },
+        });
+      } else {
+        this.breadCrumbCat.splice(this.breadCrumbCat.indexOf(category) + 1);
+        this.parentCategory = category;
+        this.allCat = [];
+        this.allProducts = [];
 
-      this.categoryService.getAllSubCategory(category).subscribe({
-        next: categoryResponse => {
-          if (categoryResponse.ok && categoryResponse.body != null) {
-            categoryResponse.body.forEach(category => {
-              if (category.imageUuid != undefined) {
-                this.pictureService.getPictureById(category.imageUuid).subscribe(file => {
-                  const reader = new FileReader();
-                  reader.readAsDataURL(file);
+        this.categoryService.getAllSubCategory(category).subscribe({
+          next: categoryResponse => {
+            if (categoryResponse.ok && categoryResponse.body != null) {
+              categoryResponse.body.forEach(category => {
+                if (category.imageUuid != undefined) {
+                  this.pictureService.getPictureById(category.imageUuid).subscribe(file => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
 
-                  reader.onload = () => {
-                    const byteImage = reader.result as string;
-                    if (category.imageUuid != undefined) {
-                      this.imageById.set(category.imageUuid, byteImage);
-                      this.allCat.push(category);
-                      this.updateMode();
+                    reader.onload = () => {
+                      const byteImage = reader.result as string;
+                      if (category.imageUuid != undefined) {
+                        this.imageById.set(category.imageUuid, byteImage);
+                        this.allCat.push(category);
+                        this.updateMode();
+                      }
                     }
-                  }
-                });
-              }
-            });
-            this.updateMode();
-          }
-        },
-      });
+                  });
+                }
+              });
+              this.updateMode();
+            }
+          },
+        });
 
-      this.renderer.setStyle(this.title.nativeElement, "cursor", "pointer");
-      this.renderer.setStyle(this.title.nativeElement, "text-decoration", "underline");
+        this.renderer.setStyle(this.title.nativeElement, "cursor", "pointer");
+        this.renderer.setStyle(this.title.nativeElement, "text-decoration", "underline");
+      }
     }
   }
 
@@ -266,7 +268,7 @@ export class CategoriesComponent implements OnInit {
     this.categoryMode = this.allProducts.length == 0;
   }
 
-  openProduct(product: Product |null) {
+  openProduct(product: Product | null) {
     if (product == null) {
       this.router.navigate(['/product', this.parentCategory?.uuid, '']);
     } else {

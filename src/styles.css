@@ -1,4 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+@font-face {
+    font-family: Champignon;
+    src: url(assets/font/champignon.otf) format("opentype");
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.offset {
+    margin-top: 50px;
+    padding-top: 154px;
+}
+
+p {
+    color: rgb(255, 255, 255);
+}
+
+h1 {
+    color: rgb(194, 208, 185);
+}
+
+h3 {
+    color: rgb(194, 208, 185);
+}

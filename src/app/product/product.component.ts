@@ -6,6 +6,7 @@ import { AuthService } from '../service/auth.service';
 import { PictureService } from '../service/picture.service';
 import { CategoryService } from '../service/category.service';
 import Swal from 'sweetalert2';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-product',
@@ -28,11 +29,8 @@ export class ProductComponent implements OnInit {
 
   imageView: string = "";
 
-  @ViewChild('firstImage')
-  private firstImage!: ElementRef;
-
   constructor(private productService: ProductService, private route: ActivatedRoute, private authService: AuthService, private pictureService: PictureService,
-    private categoryService: CategoryService, private renderer: Renderer2) {
+    private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -63,11 +61,14 @@ export class ProductComponent implements OnInit {
           }
         }
       })
-    } else {
+    }
+
+    if (this.product == undefined) {
       this.product = new Product();
       this.product.title = "";
       this.product.body = "";
       this.product.uuidsImages = [];
+      this.product.category = new Category();
     }
 
     const idCategory = this.route.snapshot.paramMap.get('idCategory');
@@ -76,7 +77,6 @@ export class ProductComponent implements OnInit {
         next: categoryResponse => {
           if (categoryResponse.ok && categoryResponse.body != null) {
             this.product.category = categoryResponse.body;
-            this.productLoaded = Promise.resolve(true);
           }
         }
       });
@@ -95,7 +95,6 @@ export class ProductComponent implements OnInit {
           if (response.ok && response.body != null) {
             this.product.uuidsImages.push(response.body.message);
             this.productImage.push(byteImage);
-            console.log(this.productImage);
             if (this.imageView == "") {
               this.imageView = byteImage;
             }

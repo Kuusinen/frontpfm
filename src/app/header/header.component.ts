@@ -17,9 +17,9 @@ export class HeaderComponent {
 
     this.renderer.listen('window', 'scroll', (e) => {
       if ((e.target.scrollingElement as Element).scrollTop > 320) {
-        this.renderer.setStyle(this.title.nativeElement, "font-size", "22px");
+        this.renderer.setStyle(this.title.nativeElement, "font-size", "48px");
       } else {
-        this.renderer.setStyle(this.title.nativeElement, "font-size", "44px");
+        this.renderer.setStyle(this.title.nativeElement, "font-size", "64px");
       }
     });
   }
