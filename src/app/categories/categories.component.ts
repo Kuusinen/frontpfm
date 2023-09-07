@@ -5,7 +5,7 @@ import { PictureService } from '../service/picture.service';
 import { AuthService } from '../service/auth.service';
 import Swal from 'sweetalert2';
 import { Product } from '../model/product';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductComponent } from '../product/product.component';
 import { ProductService } from '../service/product.service';
 
@@ -40,34 +40,40 @@ export class CategoriesComponent implements OnInit {
   private title!: ElementRef;
 
   constructor(private categoryService: CategoryService, private pictureService: PictureService, private authService: AuthService,
-    private renderer: Renderer2, private router: Router, private productService: ProductService) {
+    private renderer: Renderer2, private router: Router, private productService: ProductService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.isLog = !this.authService.isTokenExpired();
-
-    this.categoryService.getAllCategory().subscribe({
-      next: categoryResponse => {
-        if (categoryResponse.ok && categoryResponse.body != null) {
-          categoryResponse.body.forEach(category => {
-            if (category.imageUuid != undefined) {
-              this.pictureService.getPictureById(category.imageUuid).subscribe(file => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-
-                reader.onload = () => {
-                  const byteImage = reader.result as string;
-                  if (category.imageUuid != undefined) {
-                    this.imageById.set(category.imageUuid, byteImage);
-                    this.allCat.push(category);
-                  }
-                }
-              });
-            }
-          });
+    const idCategory = this.route.snapshot.paramMap.get('idCategory');
+    if (idCategory != null && idCategory != "") {
+      this.categoryService.getCategoryById(idCategory).subscribe({
+        next: categoryResponse => {
+          if (categoryResponse.ok && categoryResponse.body != null) {
+            this.loadCategory(categoryResponse.body);
+            this.breadCrumbCat = [];
+            const cat: Category[] = this.fillBreadCrumb(categoryResponse.body);
+            cat.reverse();
+            cat.forEach(category => this.breadCrumbCat.push(category));
+          }
         }
-      },
-    });
+      });
+    } else {
+      this.initCategory(null);
+    }
+
+    this.isLog = !this.authService.isTokenExpired();
+  }
+
+  fillBreadCrumb(category: Category): Category[] {
+    const cat: Category[] = [];
+
+    cat.push(category);
+    if (category.category != undefined) {
+      cat.push(category.category);
+      this.fillBreadCrumb(category.category);
+    }
+
+    return cat;
   }
 
   importImage(event: any): void {
@@ -193,14 +199,16 @@ export class CategoriesComponent implements OnInit {
   }
 
   initCategory(category: Category | null) {
-    if (category != this.parentCategory) {
+    if (category == null || category != this.parentCategory) {
       if (category == null) {
         this.parentCategory = category;
         this.allCat = [];
         this.allProducts = [];
         this.breadCrumbCat = [];
 
-        this.renderer.setStyle(this.title.nativeElement, "text-decoration", "none");
+        if (this.parentCategory != null) {
+          this.renderer.setStyle(this.title.nativeElement, "text-decoration", "none");
+        }
 
         this.categoryService.getAllCategory().subscribe({
           next: categoryResponse => {
@@ -257,8 +265,10 @@ export class CategoriesComponent implements OnInit {
           },
         });
 
-        this.renderer.setStyle(this.title.nativeElement, "cursor", "pointer");
-        this.renderer.setStyle(this.title.nativeElement, "text-decoration", "underline");
+        if (this.parentCategory != null) {
+          this.renderer.setStyle(this.title.nativeElement, "cursor", "pointer");
+          this.renderer.setStyle(this.title.nativeElement, "text-decoration", "underline");
+        }
       }
     }
   }

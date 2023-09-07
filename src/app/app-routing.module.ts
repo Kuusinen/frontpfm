@@ -6,7 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
-  { path: 'categories', component: CategoriesComponent },
+  { path: 'categories/:idCategory', component: CategoriesComponent },
   { path: 'homepage', component: HomepageComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'product/:idCategory/:idProduct', component: ProductComponent },

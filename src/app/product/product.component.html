@@ -1,15 +1,17 @@
 <div class="main_background offset">
+    <h3 (click)="backToCategory()" class="cat-prod">{{product.category.name}}</h3>
     <div *ngIf="isLog">
-        <h3>{{product.category.name}}</h3>
         <div class="product-div">
-            <input placeholder="titre de l'article" class="product-title" [(ngModel)]="product.title" />
+            <input placeholder="titre de l'article" class="prod-title prod-title-input" [(ngModel)]="product.title" />
+            <br />
             <div class="product-img">
+                <img #firstImage src="{{imageView}}" width="450px" height="300px" class="size-img" />
                 <div class="container">
-                    <div class="row product-all-img">
-                        <img *ngFor="let img of productImage" src="{{img}}" (click)="changeImg(img)"
-                            class="product-thumbnail" />
+                    <div class="row">
+                        <div *ngFor="let img of productImage" class="col-auto">
+                            <img src="{{img}}" (click)="changeImg(img)" class="product-thumbnail" />
+                        </div>
                     </div>
-                    <img #firstImage src="{{imageView}}" width="450px" class="size-img" />
                 </div>
                 <div #backgroundImage class="image-upload d-flex justify-content-center align-items-center">
                     <label for="file-input">
@@ -18,23 +20,27 @@
                     <input id="file-input" type="file" (change)="importImage($event)" />
                 </div>
             </div>
-            <textarea type="text" placeholder="entrer la description de l'article"
-                [(ngModel)]="product.body"></textarea>
             <br />
-            <button (click)="createProduct()">Créer l'article</button>
+            <textarea type="text" placeholder="entrer la description de l'article" [(ngModel)]="product.body" rows="5"
+                cols="100"></textarea>
+            <br />
+            <button (click)="createProduct()" class="btn-create">Créer l'article</button>
         </div>
     </div>
-    <div *ngIf="!isLog">
-        <h1>{{product.title}}</h1>
+    <div *ngIf="!isLog" class="product-div">
+        <h1 class="prod-title">{{product.title}}</h1>
         <div class="product-img">
+            <img #firstImage src="{{imageView}}" width="450px" height="300px" class="size-img" />
             <div class="container">
-                <div class="row product-all-img">
-                    <img *ngFor="let img of productImage" src="{{img}}" (click)="changeImg(img)"
-                        class="product-thumbnail" />
+                <div class="row">
+                    <div *ngFor="let img of productImage" class="col-auto">
+                        <img [src]="img" (click)="changeImg(img)" class="product-thumbnail" />
+                    </div>
                 </div>
-                <img #firstImage src="{{imageView}}" width="450px" class="size-img" />
             </div>
         </div>
-        <p>{{product.body}}</p>
+        <div class="div-prod-detail">
+            <p class="prod-detail">{{product.body}}</p>
+        </div>
     </div>
 </div>

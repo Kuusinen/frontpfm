@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
   imageView: string = "";
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private authService: AuthService, private pictureService: PictureService,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -72,7 +72,7 @@ export class ProductComponent implements OnInit {
     }
 
     const idCategory = this.route.snapshot.paramMap.get('idCategory');
-    if (idCategory != null) {
+    if (idCategory != null && idCategory != "") {
       this.categoryService.getCategoryById(idCategory).subscribe({
         next: categoryResponse => {
           if (categoryResponse.ok && categoryResponse.body != null) {
@@ -121,5 +121,9 @@ export class ProductComponent implements OnInit {
         }
       })
     }
+  }
+
+  backToCategory() {
+    this.router.navigate(["/categories", this.product.category.uuid]);
   }
 }

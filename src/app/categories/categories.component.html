@@ -24,14 +24,14 @@
             </mat-card>
         </div>
         <div class="row cat-div" *ngIf="productMode">
-            <mat-card *ngFor="let product of allProducts" class="col-auto" (click)="openProduct(product)">
-            <mat-card-header class="prod-card-header">
-                <mat-card-title class="prod-card-title">{{product.title}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <img [src]="loadImage(product.uuidsImages.at(0))" width="128px" height="100%"/>
-            </mat-card-content>
-        </mat-card>
+            <mat-card *ngFor="let product of allProducts" class="col-auto prod-card" (click)="openProduct(product)">
+                <mat-card-header class="prod-card-header">
+                    <mat-card-title class="prod-card-title">{{product.title}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <img [src]="loadImage(product.uuidsImages.at(0))" width="220px" height="100%"/>
+                </mat-card-content>
+            </mat-card>
         </div>
         <div class="row cat-div" *ngIf="isLog && categoryMode">
             <mat-card *ngFor="let cat of allCat" class="col-auto cat-card"
