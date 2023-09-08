@@ -280,7 +280,17 @@ export class CategoriesComponent implements OnInit {
 
   openProduct(product: Product | null) {
     if (product == null) {
-      this.router.navigate(['/product', this.parentCategory?.uuid, '']);
+      if (this.parentCategory?.uuid == undefined && this.parentCategory?.name != null) {
+        this.categoryService.getCategoryByName(this.parentCategory?.name).subscribe({
+          next: categoryResponse => {
+            if( categoryResponse.ok && categoryResponse.body != null){
+              this.router.navigate(['/product', categoryResponse.body.uuid, '']);
+            }
+          }
+        })
+      } else {
+        this.router.navigate(['/product', this.parentCategory?.uuid, '']);
+      }
     } else {
       this.router.navigate(['/product', this.parentCategory?.uuid, product.uuid]);
     }

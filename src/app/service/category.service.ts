@@ -17,6 +17,8 @@ export class CategoryService {
 
   private idUrl: string = "/id";
 
+  private nameUrl: string = "/name";
+
   constructor(private httpClient: HttpClient) { }
 
   getAllCategory(): Observable<HttpResponse<Category[]>> {
@@ -41,6 +43,11 @@ export class CategoryService {
 
   getCategoryById(idCategory: string):Observable<HttpResponse<Category>> {
     const fullCategoryUrl = this.apiUrl + this.categoryUrl+ this.idUrl + "/" + idCategory;
+    return this.httpClient.get<Category>(fullCategoryUrl, { observe: 'response' });
+  }
+
+  getCategoryByName(categoryName: string):Observable<HttpResponse<Category>> {
+    const fullCategoryUrl = this.apiUrl + this.categoryUrl+ this.nameUrl + "/" + categoryName;
     return this.httpClient.get<Category>(fullCategoryUrl, { observe: 'response' });
   }
 }
