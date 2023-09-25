@@ -2,13 +2,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CarouselElement } from '../model/carouselElement';
 import { Observable } from 'rxjs';
+import { environement } from '../model/environement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarouselService {
 
-  private apiUrl: string = "https://localhost:444/pfm/api/carousel";
+  private apiUrl: string = environement.apiUrl +"pfm/api/carousel";
 
   constructor(private httpClient: HttpClient) { }
 

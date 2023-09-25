@@ -2,13 +2,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ImageUploadResponse } from '../model/ImageUploadResponse';
+import { environement } from '../model/environement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PictureService {
 
-  private apiUrl: string = "https://localhost:444/pfm/image/";
+  private apiUrl: string = environement.apiUrl +"pfm/image/";
 
   constructor(private httpClient: HttpClient) { }
 

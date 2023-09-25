@@ -3,13 +3,14 @@ import { Category } from '../model/category';
 import { HttpClient, HttpHandler, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Product } from '../model/product';
+import { environement } from '../model/environement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private apiUrl: string = "https://localhost:444/pfm/api";
+  private apiUrl: string = environement.apiUrl +"pfm/api";
 
   private categoryUrl: string = "/category";
 

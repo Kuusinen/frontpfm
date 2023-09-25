@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './service/token.interceptor';
 import { ProductComponent } from './product/product.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductComponent } from './product/product.component';
     HomepageComponent,
     CategoriesComponent,
     AdminComponent,
-    ProductComponent
+    ProductComponent,
+    PageNotFoundComponent
   ],
   imports: [
     NgbCollapseModule,

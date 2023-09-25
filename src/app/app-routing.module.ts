@@ -4,6 +4,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProductComponent } from './product/product.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'categories/:idCategory', component: CategoriesComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'product/:idCategory/:idProduct', component: ProductComponent },
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '**', pathMatch: 'full',  component: PageNotFoundComponent },
 ];
 
 @NgModule({

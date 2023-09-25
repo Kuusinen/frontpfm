@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../model/User';
+import { environement } from '../model/environement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl: string = "https://localhost:444/pfm/login";
+  private apiUrl: string = environement.apiUrl + "pfm/login";
 
   private helper = new JwtHelperService();
 

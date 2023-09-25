@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Category } from '../model/category';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product';
+import { environement } from '../model/environement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private apiUrl: string = "https://localhost:444/pfm/api";
+  private apiUrl: string = environement.apiUrl + "pfm/api";
 
   private productUrl: string = "/product";
 
