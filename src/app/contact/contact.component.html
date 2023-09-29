@@ -26,7 +26,7 @@
             </div>
             <div class="input-div">
                 <label for="body">Message : </label>
-                <textarea formControlName="Body" name="Body" rows="15" cols="100"></textarea>
+                <textarea class="w-50" formControlName="Body" name="Body" rows="15"></textarea>
             </div>
             <div
                 *ngIf="formData.controls['Body'].invalid && (formData.controls['Body'].dirty || formData.controls['Body'].touched)">
