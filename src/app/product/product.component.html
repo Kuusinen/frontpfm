@@ -28,7 +28,14 @@
         </div>
     </div>
     <div *ngIf="!isLog" class="product-div">
-        <h1 class="prod-title">{{product.title}}</h1>
+        <div>
+            <div class="title-div">
+                <h1 class="prod-title">{{product.title}}</h1>
+                <div class="contact-button">
+                    <mat-icon class="education-img" matTooltip="Envoyer un message concernant l'article" matTooltipPosition="right" (click)="navigateToContactWithProduct()">message</mat-icon>
+                </div>
+            </div>
+        </div>
         <div class="product-img">
             <img #firstImage src="{{imageView}}" width="450px" height="300px" class="size-img" />
             <div class="container">

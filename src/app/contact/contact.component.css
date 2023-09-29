@@ -1,0 +1,98 @@
+.offset {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-div {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-div {
+    margin-bottom: 10px;
+}
+
+label {
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    width: 120px;
+    margin: 0 0 5px 0;
+}
+
+button {
+    border: none;
+    vertical-align: middle;
+    margin-top: 5px;
+    color: rgb(194, 208, 185);
+    background-color: rgb(156, 153, 144);
+    cursor: pointer;
+    transition: box-shadow 1.2s;
+    font-size: 20px;
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
+}
+
+input {
+    width: 260px;
+}
+
+.my-overlay {
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 10000 !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    transition: visibility 0s, opacity 0.4s linear !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: wait !important;
+}
+
+.my-overlay i.fa.fa-spinner.fa-spin,
+.spinner-big {
+    font-size: 100px !important;
+}
+
+.spin::before {
+    animation: 2.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px rgb(255, 255, 255);
+    border-bottom-color: rgb(194, 208, 185);
+    border-radius: 50%;
+    content: "";
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+}
+
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+
+.title-margin {
+    margin-left: 15px;
+}
+
+.product-title{
+    margin-bottom: 10px;
+}

@@ -1,0 +1,40 @@
+<div class="offset">
+    <div class="my-overlay spin" *ngIf="overlay">
+        <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+    </div>
+    <h1 class="title-margin">Formulaire de contact : </h1>
+    <h3 class="title-margin product-title" *ngIf="nameProduct.length != 0">{{nameProduct}}</h3>
+    <div class="form-div">
+        <form [formGroup]="formData" (ngSubmit)="onSubmit(formData)">
+            <div class="input-div">
+                <label for="Name">Nom : </label>
+                <input type="text" name="Name" placeholder="Saisir le nom" formControlName="Name">
+            </div>
+            <div class="input-div">
+                <label for="FirstName">Prénom : </label>
+                <input type="text" name="FirstName" placeholder="Saisir le prénom" formControlName="FirstName">
+            </div>
+            <div class="input-div">
+                <label for="EmailAddress">Adresse Mail : </label>
+                <input type="email" name="EmailAddress" placeholder="Saisir email" formControlName="EmailAddress">
+            </div>
+            <div
+                *ngIf="formData.controls['EmailAddress'].invalid && (formData.controls['EmailAddress'].dirty || formData.controls['EmailAddress'].touched)">
+                <p>
+                    Veuillez entrer une adresse mail valide.
+                </p>
+            </div>
+            <div class="input-div">
+                <label for="body">Message : </label>
+                <textarea formControlName="Body" name="Body" rows="15" cols="100"></textarea>
+            </div>
+            <div
+                *ngIf="formData.controls['Body'].invalid && (formData.controls['Body'].dirty || formData.controls['Body'].touched)">
+                <p>
+                    Veuillez entrer une message.
+                </p>
+            </div>
+            <button type="submit" [disabled]="!formData.valid">Envoyer</button>
+        </form>
+    </div>
+</div>

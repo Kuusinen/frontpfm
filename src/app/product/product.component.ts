@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Product } from '../model/product';
 import { ProductService } from '../service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -125,5 +125,10 @@ export class ProductComponent implements OnInit {
 
   backToCategory() {
     this.router.navigate(["/categories", this.product.category.uuid]);
+  }
+
+  navigateToContactWithProduct() {
+    console.log(window.location.href);
+    this.router.navigate(['/contact', window.location.href, this.product.title]);
   }
 }

@@ -2,6 +2,10 @@
     background-color: rgb(156, 153, 144);
 }
 
+.offset {
+    margin-top: 20px;
+}
+
 .pres-container {
     margin-top: 100px;
     margin-bottom: 20px;
@@ -34,11 +38,11 @@ input:focus {
     outline: none;
 }
 
-input:hover{
+input:hover {
     border: none;
 }
 
-button{
+button {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
     border: none;
     width: 30px;

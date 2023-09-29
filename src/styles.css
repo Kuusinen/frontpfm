@@ -16,8 +16,7 @@ body {
 }
 
 .offset {
-    margin-top: 50px;
-    padding-top: 154px;
+    padding-top: 204px;
 }
 
 p {
@@ -30,4 +29,8 @@ h1 {
 
 h3 {
     color: rgb(194, 208, 185);
+}
+
+label {
+    color: rgb(255, 255, 255);
 }
