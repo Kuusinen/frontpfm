@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CarouselElement } from '../model/carouselElement';
 import { Observable } from 'rxjs';
-import { environement } from '../model/environement';
+import { environement } from '../model/environement-prod';
 
 @Injectable({
   providedIn: 'root'

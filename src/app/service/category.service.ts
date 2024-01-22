@@ -3,7 +3,7 @@ import { Category } from '../model/category';
 import { HttpClient, HttpHandler, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Product } from '../model/product';
-import { environement } from '../model/environement';
+import { environement } from '../model/environement-prod';
 
 @Injectable({
   providedIn: 'root'
