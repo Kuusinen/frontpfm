@@ -9,11 +9,18 @@
                 </button>
                 <div class="collapse navbar-collapse" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a class="nav-link menu-item" routerLink="/homepage">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link menu-item"
-                                [routerLink]="['/categories']">Catégories</a></li>
-                        <li class="nav-item"><a class="nav-link menu-item"
-                                [routerLink]="['/contact']">Contact</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-item" routerLink="/homepage" (click)="isCollapsed = !isCollapsed">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-item" [routerLink]="['/categories']" (click)="isCollapsed = !isCollapsed">Catégories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-item" [routerLink]="['/contact']" (click)="isCollapsed = !isCollapsed">Contact</a>
+                        </li>
+                        <li class="nat-item">
+                            <a class="nav-link menu-item" [routerLink]="['/admin']" (click)="isCollapsed = !isCollapsed">Connexion</a>
+                        </li>
                     </ul>
                 </div>
             </div>
