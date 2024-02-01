@@ -28,6 +28,13 @@ img {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
 }
 
+.profil-img{
+    float: left;
+    margin-right: 10px;
+    border-radius: 75px 75px 75px 75px;
+    vertical-align: none;
+}
+
 input {
     margin-left: 5px;
     border: none;
