@@ -23,4 +23,11 @@ export class HeaderComponent {
       }
     });
   }
+
+  disableHamburgerMenu()
+  {
+    if( !this.isCollapsed){
+      this.isCollapsed = true
+    }
+  }
 }
