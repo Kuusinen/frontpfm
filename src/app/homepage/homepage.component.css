@@ -23,7 +23,7 @@
     margin: 5px;
 }
 
-img {
+.profil-img {
     vertical-align: top;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
 }
@@ -56,4 +56,8 @@ button {
     height: 30px;
     vertical-align: middle;
     margin-top: 5px;
+}
+
+.img-float{
+    position: relative;
 }

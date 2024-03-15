@@ -14,14 +14,6 @@ export class HeaderComponent {
 
   constructor(private renderer: Renderer2){
     this.isCollapsed = true;
-
-    this.renderer.listen('window', 'scroll', (e) => {
-      if ((e.target.scrollingElement as Element).scrollTop > 320) {
-        this.renderer.setStyle(this.title.nativeElement, "font-size", "48px");
-      } else {
-        this.renderer.setStyle(this.title.nativeElement, "font-size", "64px");
-      }
-    });
   }
 
   disableHamburgerMenu()
