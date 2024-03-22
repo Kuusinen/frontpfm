@@ -8,6 +8,8 @@ body {
 @font-face {
     font-family: Champignon;
     src: url(assets/font/champignon.otf) format("opentype");
+    font-family: Cinzel-Bold;
+    src: url(assets/font/CD-B.ttf) format("opentype");
 }
 
 body {
@@ -25,10 +27,12 @@ p {
 
 h1 {
     color: rgb(194, 208, 185);
+    font-family: Cinzel-Bold;
 }
 
 h3 {
     color: rgb(194, 208, 185);
+    font-family: Cinzel-Bold;
 }
 
 label {

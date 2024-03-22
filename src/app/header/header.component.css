@@ -12,10 +12,9 @@
 }
 
 .menu-item {
-    color: rgb(194, 208, 185);
-    font-weight: bold;
-    font-size: 2.5em;
-    font-family: Champignon;
+    color:#819679;
+    font-size: 1.5em;
+    font-family: Cinzel-Bold;
     transition: transform 0.7s, text-shadow 0.7s;
 }
 
@@ -27,7 +26,7 @@
 .menu-button {
     border: none;
     outline: none;
-    color: rgb(194, 208, 185);
+    color:#819679;
 }
 
 .navbar-box-shadow {

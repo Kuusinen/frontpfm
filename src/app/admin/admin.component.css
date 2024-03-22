@@ -13,18 +13,19 @@
     display: inline-block;
 }
 
-.btn-log {
-    color: rgb(194, 208, 185);
-    background-color: rgb(255, 255, 255);
+button {
     border: none;
-    font-weight: bold;
-    width: 150px;
-    height: 30px;
+    vertical-align: middle;
+    margin-top: 5px;
+    color: rgb(194, 208, 185);
+    background-color: rgb(156, 153, 144);
+    cursor: pointer;
+    transition: box-shadow 1.2s;
+    font-size: 20px;
 }
 
-.btn-log:hover {
+button:hover {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 7px 29px 0px;
-    transition: 0.7s;
 }
 
 input {
