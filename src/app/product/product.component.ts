@@ -112,7 +112,6 @@ export class ProductComponent implements OnInit {
     if (this.product.title == "") {
       Swal.fire({ title: 'Ajout', html: "L'article doit avoir un titre défini pour être ajouté", icon: 'error', confirmButtonColor: "rgb(194, 208, 185)", color: "rgb(255, 255, 255)", background: "rgb(156, 153, 144)" });
     } else {
-      console.log(this.product);
       this.productService.addProduct(this.product).subscribe({
         next: productResponse => {
           if (productResponse.ok) {
@@ -128,7 +127,6 @@ export class ProductComponent implements OnInit {
   }
 
   navigateToContactWithProduct() {
-    console.log(window.location.href);
     this.router.navigate(['/contact', window.location.href, this.product.title]);
   }
 }

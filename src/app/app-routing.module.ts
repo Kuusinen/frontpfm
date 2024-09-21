@@ -10,12 +10,11 @@ import { ContactComponent } from './contact/contact.component';
 const routes: Routes = [
   { path: 'categories/:idCategory', component: CategoriesComponent },
   { path: 'categories', component: CategoriesComponent },
-  { path: 'homepage', component: HomepageComponent },
+  { path: '', component: HomepageComponent},
   { path: 'admin', component: AdminComponent },
   { path: 'contact/:pathProduct/:nameProduct', component: ContactComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'product/:idCategory/:idProduct', component: ProductComponent },
-  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

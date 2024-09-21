@@ -1,3 +1,3 @@
 export const environement = {
-    apiUrl: `https://rogue.fr.nf:444/`
+    apiUrl: `https://rogatien.ovh:444/`
 }

@@ -65,6 +65,10 @@ export class ContactComponent implements OnInit {
           Swal.fire({ title: "Impossible d'envoyer le message", html: "Une erreur est survenue. Impossible d'envoyer le message à la créatrice. Veuillez réessayer", icon: 'error', confirmButtonColor: "rgb(194, 208, 185)", color: "rgb(255, 255, 255)", background: "rgb(156, 153, 144)" });
         }
       },
+      error: err =>  {
+        this.overlay = false;
+        Swal.fire({ title: "Impossible d'envoyer le message", html: "Une erreur est survenue. Impossible d'envoyer le message à la créatrice. Veuillez réessayer", icon: 'error', confirmButtonColor: "rgb(194, 208, 185)", color: "rgb(255, 255, 255)", background: "rgb(156, 153, 144)" });
+      },
     })
   }
 }

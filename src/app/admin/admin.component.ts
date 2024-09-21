@@ -26,7 +26,7 @@ export class AdminComponent {
       next: (data) => {
         let jwToken = data.headers.get('Authorization')!;
         this.authService.saveToken(jwToken);
-        this.router.navigate(['/homepage']);
+        this.router.navigate(['']);
       },
       error: (err) => {
         this.renderer.setStyle(this.id.nativeElement, "border", "2px inset red");
@@ -37,7 +37,7 @@ export class AdminComponent {
 
   loggedOut(): void {
     this.authService.logout();
-    this.router.navigate(['/homepage']);
+    this.router.navigate(['']);
   }
 
   isLogged() {

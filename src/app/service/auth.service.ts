@@ -9,7 +9,7 @@ import { environement } from '../model/environement-prod';
 })
 export class AuthService {
 
-  private apiUrl: string = environement.apiUrl + "pfm/login";
+  private apiUrl: string = environement.apiUrl + "pfm/api/login";
 
   private helper = new JwtHelperService();
 

@@ -17,7 +17,6 @@ export class ContactService {
 
   sendEmail(email: Email): Observable<HttpResponse<any>> {
     const fullContactUrl = this.apiUrl + this.mailIUrl;
-    console.log(fullContactUrl);
     return this.http.post<Email>(fullContactUrl, email, { observe: 'response' });
   }
 }
