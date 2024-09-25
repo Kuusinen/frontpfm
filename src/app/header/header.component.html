@@ -1,7 +1,7 @@
-<div class="main_background">
-    <div #title class="fixed-top nav-color-background navbar-box-shadow">
+<div #title class="main_background">
+    <div class="fixed-top nav-color-background navbar-box-shadow">
         <div class="text-center">
-            <img [src]="imageSource" [@change]="state" (@change.done)="onDoneEvent($event)" class="img-fluid"/>
+            <img [src]="imageSource" [@change]="state" (@change.done)="onDoneEvent($event)" class="img-fluid" />
         </div>
         <nav class="navbar navbar-expand-xl">
             <div class="container-fluid">

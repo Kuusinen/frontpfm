@@ -9,12 +9,11 @@
 
 .nav-color-background {
     background-color: rgb(255, 255, 255);
+    padding-top: 1rem;
 }
 
 .menu-item {
-    color:#819679;
-    font-size: 1.5em;
-    font-family: Cinzel-Bold;
+    color: #819679;
     transition: transform 0.7s, text-shadow 0.7s;
 }
 
@@ -26,14 +25,14 @@
 .menu-button {
     border: none;
     outline: none;
-    color:#819679;
+    color: #819679;
 }
 
 .navbar-box-shadow {
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
 }
 
-.main_background{
+.main_background {
     background-color: rgb(156, 153, 144);
     height: 15rem;
 }

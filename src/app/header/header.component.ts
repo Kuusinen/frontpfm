@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnChanges, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,14 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
       transition('stable => onChange', [
         animate('.5s ease-in')
       ])
-    ])]
+    ]),
+    trigger('grow', [
+      transition('void <=> *', []),
+      transition('* <=> *', [
+        style({ height: '{{startHeight}}px' }),
+        animate('15s ease'),
+      ], { params: { startHeight: 0 } })
+    ]),]
 })
 export class HeaderComponent {
 
@@ -28,6 +35,8 @@ export class HeaderComponent {
 
   imageSource: string = "assets/img/pfm_title_c.png"
 
+  startHeight: number = 0
+
   @ViewChild('title')
   private title!: ElementRef;
 
@@ -35,11 +44,12 @@ export class HeaderComponent {
     this.isCollapsed = true;
 
     this.renderer.listen('window', 'scroll', (e) => {
-      if ((e.target.scrollingElement as Element).scrollTop > 300) {
+      if ((e.target.scrollingElement as Element).scrollTop > 150) {
         this.changeImage(true)
       } else {
         this.changeImage(false)
       }
+      this.setStartHeight()
     });
   }
 
@@ -51,8 +61,8 @@ export class HeaderComponent {
       this.imageSource = "assets/img/pfm_title_c.png"
     }
 
-    if(oldSource != this.imageSource){
-      this.state= "stable"
+    if (oldSource != this.imageSource) {
+      this.state = "stable"
     }
   }
 
@@ -62,9 +72,17 @@ export class HeaderComponent {
     }
   }
 
-  onDoneEvent(event: AnimationEvent){
-    if(event.toState === 'stable'){
-      this.state= "onChange"
+  onDoneEvent(event: AnimationEvent) {
+    if (event.toState === 'stable') {
+      this.state = "onChange"
     }
+  }
+
+  @HostBinding('@grow') get grow() {
+    return { value: this.imageSource, params: { startHeight: this.startHeight } };
+  }
+
+  setStartHeight() {
+    this.startHeight = this.title.nativeElement.clientHeight;
   }
 }
